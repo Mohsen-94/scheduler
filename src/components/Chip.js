@@ -38,6 +38,7 @@ export default props => {
       {addedCourses.map((course, i) => (
         <Tooltip key={i} title={courseToString(course)}>
           <Chip
+            color="primary"
             label={course.Name}
             onDelete={() => {
               setAddedCourses(addedCourses.filter(c => course !== c));

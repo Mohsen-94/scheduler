@@ -153,8 +153,19 @@ export function to2D(sch) {
         });
     }
   });
+  return shave2D(arr2D);
+}
 
-  return arr2D;
+function shave2D(arr) {
+  let upTo = arr.length;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    const row = arr[i];
+    if (row.reduce((a, c) => Boolean(a || c))) {
+      upTo = i + 1;
+      break;
+    }
+  }
+  return arr.slice(0, upTo);
 }
 
 export const combinations = addedCourses => {

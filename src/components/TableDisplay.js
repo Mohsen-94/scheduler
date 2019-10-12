@@ -26,6 +26,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
+  },
+  button: {
+    display: "block",
+    width: "33%",
+    marginRight: theme.spacing(5),
+    marginLeft: theme.spacing(5)
   }
 }));
 
@@ -44,6 +50,39 @@ export default function TableDisplay({ schedules }) {
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
+          <TableRow>
+            <TableCell colSpan={12}>
+              <Container className={classes.flex}>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="secondary"
+                  disabled={index === 0}
+                  onClick={e => {
+                    setIndex(index - 1);
+                  }}
+                >
+                  Previous
+                </Button>
+                <Chip
+                  variant="outlined"
+                  color="secondary"
+                  label={`${index + 1} out of ${schedules.length}`}
+                />
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="secondary"
+                  disabled={index === schedules.length - 1}
+                  onClick={e => {
+                    setIndex(index + 1);
+                  }}
+                >
+                  Next
+                </Button>
+              </Container>
+            </TableCell>
+          </TableRow>
           <TableRow>
             <TableCell align="center">Time</TableCell>
             <TableCell align="center">Sunday</TableCell>
@@ -71,29 +110,6 @@ export default function TableDisplay({ schedules }) {
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={12}>
-              <Container className={classes.flex}>
-                <Button
-                  onClick={e => {
-                    index !== 0 && setIndex(index - 1);
-                  }}
-                >
-                  Previous
-                </Button>
-                <Chip label={`${index + 1} out of ${schedules.length}`} />
-                <Button
-                  onClick={e => {
-                    index !== schedules.length - 1 && setIndex(index + 1);
-                  }}
-                >
-                  Next
-                </Button>
-              </Container>
-            </TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
     </Paper>
   );

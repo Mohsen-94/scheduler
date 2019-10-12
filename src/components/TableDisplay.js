@@ -7,7 +7,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import TableFooter from "@material-ui/core/TableFooter";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import Container from "@material-ui/core/Container";
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TableDisplay({ schedules }) {
+export default function TableDisplay({ schedules, tableRef }) {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
   let arr;
@@ -48,7 +47,7 @@ export default function TableDisplay({ schedules }) {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} ref={tableRef}>
         <TableHead>
           <TableRow>
             <TableCell colSpan={12}>

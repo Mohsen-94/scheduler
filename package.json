@@ -1,6 +1,7 @@
 {
   "name": "scheduler",
   "version": "0.1.0",
+  "homepage": "https://mohsen-94.github.io/scheduler",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.3.1",

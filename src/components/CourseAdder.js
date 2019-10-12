@@ -44,6 +44,11 @@ export default props => {
     }
   }
 
+  function handleText(value, lable) {
+    if (/^(11|10|\d)(,11||,10||,\d||,)*$/g.test(value)) {
+      setState({ ...state, [lable]: value });
+    }
+  }
   return (
     <Paper className={classes.paper}>
       <form
@@ -56,17 +61,27 @@ export default props => {
         noValidate
         autoComplete="off"
       >
-        {Object.keys(initialState).map((lable, i) => (
-          <TextField
-            onChange={e => setState({ ...state, [lable]: e.target.value })}
-            label={lable}
-            className={classes.textField}
-            margin="dense"
-            variant="outlined"
-            key={i}
-            value={state[lable]}
-          />
-        ))}
+        <TextField
+          onChange={e => setState({ ...state, Name: e.target.value })}
+          label="Course Name"
+          className={classes.textField}
+          margin="dense"
+          variant="outlined"
+          value={state["Name"]}
+        />
+        {Object.keys(initialState)
+          .slice(1)
+          .map((lable, i) => (
+            <TextField
+              onChange={e => handleText(e.target.value, lable)}
+              label={lable}
+              className={classes.textField}
+              margin="dense"
+              variant="outlined"
+              key={i}
+              value={state[lable]}
+            />
+          ))}
       </form>
       <Fab
         className={classes.margin}

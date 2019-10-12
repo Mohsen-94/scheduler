@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CourseAdder from "./components/CourseAdder";
 import Chip from "./components/Chip";
 import TableDisplay from "./components/TableDisplay";

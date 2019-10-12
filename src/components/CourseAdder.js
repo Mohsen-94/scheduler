@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Fab from "@material-ui/core/Fab";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -45,7 +46,10 @@ export default props => {
   }
 
   function handleText(value, lable) {
-    if (/^(11|10|\d)(,11||,10||,\d||,)*$/g.test(value)) {
+    if (
+      /^(11|10|\d)(,11||,10||,\d||,)*$/g.test(value) ||
+      value.trim().length === 0
+    ) {
       setState({ ...state, [lable]: value });
     }
   }
@@ -72,15 +76,19 @@ export default props => {
         {Object.keys(initialState)
           .slice(1)
           .map((lable, i) => (
-            <TextField
-              onChange={e => handleText(e.target.value, lable)}
-              label={lable}
-              className={classes.textField}
-              margin="dense"
-              variant="outlined"
+            <Tooltip
               key={i}
-              value={state[lable]}
-            />
+              title={`Enter ${lable}'s periods seperated by comma "," e.g. "1,2,3"`}
+            >
+              <TextField
+                onChange={e => handleText(e.target.value, lable)}
+                label={lable}
+                className={classes.textField}
+                margin="dense"
+                variant="outlined"
+                value={state[lable]}
+              />
+            </Tooltip>
           ))}
       </form>
       <Fab

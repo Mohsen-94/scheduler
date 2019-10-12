@@ -114,6 +114,7 @@ export function to2D(sch) {
     let backgroundColor = randomColor();
     if (course.Sunday) {
       course.Sunday.split(",")
+        .filter(Boolean)
         .map(p => parseInt(p))
         .forEach(p => {
           arr2D[p - 1][0] = { name: course.Name, color: backgroundColor };
@@ -121,6 +122,7 @@ export function to2D(sch) {
     }
     if (course.Monday) {
       course.Monday.split(",")
+        .filter(Boolean)
         .map(p => parseInt(p))
         .forEach(p => {
           arr2D[p - 1][1] = { name: course.Name, color: backgroundColor };
@@ -128,6 +130,7 @@ export function to2D(sch) {
     }
     if (course.Tuesday) {
       course.Tuesday.split(",")
+        .filter(Boolean)
         .map(p => parseInt(p))
         .forEach(p => {
           arr2D[p - 1][2] = { name: course.Name, color: backgroundColor };
@@ -135,6 +138,7 @@ export function to2D(sch) {
     }
     if (course.Wednesday) {
       course.Wednesday.split(",")
+        .filter(Boolean)
         .map(p => parseInt(p))
         .forEach(p => {
           arr2D[p - 1][3] = { name: course.Name, color: backgroundColor };
@@ -142,6 +146,7 @@ export function to2D(sch) {
     }
     if (course.Thursday) {
       course.Thursday.split(",")
+        .filter(Boolean)
         .map(p => parseInt(p))
         .forEach(p => {
           arr2D[p - 1][4] = { name: course.Name, color: backgroundColor };

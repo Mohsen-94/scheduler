@@ -32,7 +32,14 @@ const useStyles = makeStyles(theme => ({
 export default function TableDisplay({ schedules }) {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
-  const arr = to2D(schedules[index]);
+  let arr;
+  if (index >= schedules.length) {
+    setIndex(index - 1);
+    arr = to2D(schedules[index - 1]);
+  } else {
+    arr = to2D(schedules[index]);
+  }
+
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
